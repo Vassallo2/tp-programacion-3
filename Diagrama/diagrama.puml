@@ -1,0 +1,80 @@
+@startuml
+
+
+
+abstract Usuario{
+
+-idUsuario : number
+-nombre: string
+-apellido: string
+-email : string
+-contraseña : string
+-rol : string 
+
++ login()
++ logout()
++ verHorario()
+
+}
+
+class Alumno extends Usuario {
+
+- legajo: number
+- id_Carrera: number
+
++ inscribirse()
++ verEventos()
++ verAulas()
+
+}
+
+class Profesor extends Usuario{
+
+  - id_Carrera: number
+  - especialidad: string
+
+  + crearEvento()
+
+}
+
+class Administador extends Usuario{
+
+    + crearUsuario()
+    + crearAula()
+    + crearEvento()
+}
+
+class Aula {
+    - numero_aula: number
+    - planta: string
+    - aforo: number
+    - evento : Evento()
+
+}
+
+abstract Evento{
+
+    -nombre: String
+    -horario: number
+    -aula : Aula()
+    -profesor: Profesor()
+
+}
+
+class Parcial extends Evento{
+
+}
+
+class Clase extends Evento{
+
+}
+
+class Libre extends Evento{
+
+
+}
+
+Evento *-- Aula
+Profesor *--Evento
+
+@enduml
